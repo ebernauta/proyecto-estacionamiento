@@ -7,7 +7,6 @@ cap = cv2.VideoCapture(0)
 
 # ancho de la camara
 cap.set(3, 640) # 3 es la ubicacion y 640 es el ancho
-
 #altura de la camara
 cap.set(4, 480) # 4 es la ubicacion y 480 es la altura
 
@@ -20,7 +19,7 @@ with open(r'C:\DEV\proyecto-estacionamiento\aplicación_Qr\credenciales.txt') as
 print(myDataList)
 
 while True:
-    #Se guarda la imagen de la camara
+    #Se guarda la imagen de la camara 
     success, img = cap.read()
     
     
