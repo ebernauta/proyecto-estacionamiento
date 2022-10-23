@@ -37,6 +37,7 @@ while True:
             #Se imprime el mensaje de acceso permitido
             myOutput = 'Acceso Permitido'
             color = (0, 255, 0) #Codigo de color verde
+            
         else:
             myOutput = 'No Autorizado'
             color = (0, 0, 255) #Codigo de color Rojo

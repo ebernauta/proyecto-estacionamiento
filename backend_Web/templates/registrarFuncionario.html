@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/funcionario.css')}}">
+  <link rel="stylesheet" href="/backend_Web/static/css/funcionario.css">
+  <title>Registro de Funcionario</title>
+</head>
+<body>
+  <form class="form-register" method="POST" action="alumnoRegistrado">
+    <h4>Registro de Funcioario</h4>
+    <input class="controls" type="text" name="nombres" id="nombres" placeholder="Ingrese su Nombre">
+    <input class="controls" type="text" name="apellidos" id="apellidos" placeholder="Ingrese su Apellido">
+    <input class="controls" type="text" name="patente" id="patente" placeholder="Ingrese Patente">
+    <input class="controls" type="text" name="rut" id="rut" placeholder="Ingrese rut">
+    <input class="controls" type="text" name="telefono" id="telefono" placeholder="Ingrese Numero">
+    <label for="Cargos">Cargos: </label>
+    <select class="controls" name="Cargos" id="Cargos" >
+        <option value="" name="" aria-placeholder="Carreras">...</option>
+        <option value="BasedeDatosNoRelacional">Base de datos no Relacional</option>
+        <option value="programacionFronEnd">Programacion Front End</option>
+        <option value="programacionBackEnd">Programacion Back End</option>
+        <option value="BasedeDatosRelacional">Base de datos relacional</option>
+        <option value="happitoGei">Happito Gay</option>
+    </select>
+    <p>Volver a la  <a href="index.html">pagina principal</a></p>
+    <input class="botons" type="submit" value="Registrar">
+    <p><a href="https://portales.inacap.cl">Portal Inacap</a></p>
+</form>
+
+</body>
+</html>
