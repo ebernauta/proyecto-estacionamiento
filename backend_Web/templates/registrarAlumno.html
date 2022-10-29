@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="{{url_for('static', filename='css/alumno.css')}}">
   <link rel="stylesheet" href="/backend_Web/static/css/alumno.css">
-  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
   <title>Registro de alumno</title>
 </head>
 <body>
@@ -29,9 +29,21 @@
       <label class="form-check-label" for="diurno">Diurno</label>
       <input type="radio" class="form-check-input" id="vespertino" name="horario" value="vespertino" checked>
       <label class="form-check-label" for="vespertino">Vespertino</label>
-    <p>Volver a la <a href="index.html">pagina principal</a></p>
+      {% with messages = get_flashed_messages() %}
+
+      {% if messages %}
+      <br/>
+      {% for message in messages %}
+      <br/>
+      <div class="alert alert-success" role="alert">
+        <strong>{{message}}</strong>
+      </div>
+      {% endfor %}
+      {% endif %}
+
+      {% endwith %}
+    <p>Volver a la <a href="main">pagina principal</a></p>
     <input class="botons" type="submit" value="Registrar">
-    <p><a href="https://portales.inacap.cl"> --Portal Inacap-- </a></p>
 </form>
 
 </body>

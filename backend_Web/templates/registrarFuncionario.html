@@ -9,26 +9,36 @@
   <title>Registro de Funcionario</title>
 </head>
 <body>
-  <form class="form-register" method="POST" action="alumnoRegistrado">
-    <h4>Registro de Funcioario</h4>
-    <input class="controls" type="text" name="nombres" id="nombres" placeholder="Ingrese su Nombre">
-    <input class="controls" type="text" name="apellidos" id="apellidos" placeholder="Ingrese su Apellido">
-    <input class="controls" type="text" name="patente" id="patente" placeholder="Ingrese Patente">
-    <input class="controls" type="text" name="rut" id="rut" placeholder="Ingrese rut">
-    <input class="controls" type="text" name="telefono" id="telefono" placeholder="Ingrese Numero">
+  <form class="form-register" method="POST" action="funcionarioRegistrado">
+    <h4>Registro de Funcionario</h4>
+    <input class="controls" type="text" name="nombre" placeholder="Ingrese su Nombre">
+    <input class="controls" type="text" name="rut"  placeholder="Ingrese Patente">
+    <input class="controls" type="text" name="numeroTelefonico"  placeholder="Ingrese rut">
+    <input class="controls" type="text" name="patente"  placeholder="Ingrese numero telefonico">
     <label for="Cargos">Cargos: </label>
-    <select class="controls" name="Cargos" id="Cargos" >
-        <option value="" name="" aria-placeholder="Carreras">...</option>
+    <select class="controls" name="cargo">
+        <option value="" name="">...</option>
         <option value="BasedeDatosNoRelacional">Base de datos no Relacional</option>
         <option value="programacionFronEnd">Programacion Front End</option>
         <option value="programacionBackEnd">Programacion Back End</option>
         <option value="BasedeDatosRelacional">Base de datos relacional</option>
         <option value="happitoGei">Happito Gay</option>
     </select>
-    <p>Volver a la  <a href="index.html">pagina principal</a></p>
+    {% with messages = get_flashed_messages()%}
+
+    {% if messages %}
+    <br/>
+    {% for message in messages %}
+    <div class="alert alert-primary alert-dismissible" role="alert">
+      <strong>{{message}}</strong>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    {% endwith %}
+    <p>Volver a la  <a href="main">pagina principal</a></p>
     <input class="botons" type="submit" value="Registrar">
-    <p><a href="https://portales.inacap.cl">Portal Inacap</a></p>
-</form>
+  </form>
 
 </body>
 </html>
