@@ -10,7 +10,8 @@
   <title>Registro de alumno</title>
 </head>
 <body>
-  <form class="form-register" method="POST" action="alumnoRegistrado">
+  <form class="form-register" method="POST" action="registrarAlumno">
+    {{ form.csrf_token }}
     <h4>Registro de Alumno</h4>
     <input class="controls" type="text" name="nombres" id="nombres" placeholder=" Ingrese su Nombre">
     <input class="controls" type="text" name="patente" id="patente" placeholder="Ingrese Patente">
@@ -29,13 +30,13 @@
       <label class="form-check-label" for="diurno">Diurno</label>
       <input type="radio" class="form-check-input" id="vespertino" name="horario" value="vespertino" checked>
       <label class="form-check-label" for="vespertino">Vespertino</label>
-      {% with messages = get_flashed_messages() %}
+      {% with messages = get_flashed_messages(with_categories=True) %}
 
       {% if messages %}
       <br/>
-      {% for message in messages %}
+      {% for category ,message in messages %}
       <br/>
-      <div class="alert alert-success" role="alert">
+      <div class="alert alert-{{category}}" role="alert">
         <strong>{{message}}</strong>
       </div>
       {% endfor %}

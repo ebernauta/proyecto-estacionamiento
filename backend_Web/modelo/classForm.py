@@ -22,8 +22,8 @@ class FormularioAlumnos:
     
 
 class FormularioFuncionarios:
-    def __init__(self, nombres="", rut="", telefono="", patente="", cargo=""):
-        self.nombres = nombres
+    def __init__(self, nombre="", rut="", telefono="", patente="", cargo=""):
+        self.nombre = nombre
         self.rut = rut
         self.telefono = telefono
         self.patente = patente
@@ -31,13 +31,13 @@ class FormularioFuncionarios:
         
         
     def __str__(self):
-        return f'Nombre: {self.nombres}, Rut: {self.rut}, Telefono: {self.telefono}, Patente: {self.patente}, Cargo: {self.cargo}'
+        return f'Nombre: {self.nombre}, Rut: {self.rut}, Telefono: {self.telefono}, Patente: {self.patente}, Cargo: {self.cargo}'
     
     def agregarFuncionarios(self):
         return{
-            'nombres': self.nombres,
+            'nombre': self.nombre,
             'rut': self.rut,
-            'telefono': self.telefono,
+            'numeroTelefonico': self.telefono,
             'patente': self.patente,
             'cargo': self.cargo,
         }
