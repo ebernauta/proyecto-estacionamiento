@@ -1,5 +1,3 @@
-from django.shortcuts import render
-from django import forms
 from flask import Flask, jsonify, render_template, redirect, url_for, request, flash
 from flask_wtf import CSRFProtect, FlaskForm
 from wtforms import StringField
@@ -105,7 +103,11 @@ def registrar_funcionario():
 def funcionarioRegistrado():
     
     return render_template("registrarFuncionario.html")
+
+@app.route('/charts', methods=["POST", "GET"])
+def charts():
     
+    return render_template("charts.html")
 
 if __name__ == '__main__':    
     app.run(debug=True)
