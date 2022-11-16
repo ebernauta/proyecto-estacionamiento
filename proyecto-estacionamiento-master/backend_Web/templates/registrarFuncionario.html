@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/funcionario.css')}}">
+  <link rel="stylesheet" href="/backend_Web/static/css/funcionario.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <title>Registro de Funcionario</title>
+</head>
+<body>
+  <form class="form-register" method="POST" action="registrarFuncionario">
+    {{ form.csrf_token }}
+    <h4>Registro de Funcionario</h4>
+    <input class="controls" type="text" name="nombre" placeholder="Ingrese su Nombre">
+    <input class="controls" type="text" name="rut"  placeholder="Ingrese Patente">
+    <input class="controls" type="text" name="numeroTelefonico"  placeholder="Ingrese rut">
+    <input class="controls" type="text" name="patente"  placeholder="Ingrese numero telefonico">
+    <label for="Cargos">Cargos: </label>
+    <select class="controls" name="cargo">
+      <option value="" name="">...</option>
+      <option value="BasedeDatosNoRelacional">Base de datos no Relacional</option>
+      <option value="programacionFronEnd">Programacion Front End</option>
+      <option value="programacionBackEnd">Programacion Back End</option>
+      <option value="BasedeDatosRelacional">Base de datos relacional</option>
+      <option value="happitoGei">Happito Gay</option>
+    </select>
+      {% with messages = get_flashed_messages(with_categories=True) %}
+
+      {% if messages %}
+      <br/>
+      {% for category ,message in messages %}
+      <br/>
+      <div class="alert alert-{{category}}" role="alert">
+        <strong>{{message}}</strong>
+      </div>
+      {% endfor %}
+      {% endif %}
+
+      {% endwith %}
+    <p>Volver a la  <a href="main">pagina principal</a></p>
+    <input class="botons" type="submit" value="Registrar">
+
+  </form>
+</body>
+</html>
