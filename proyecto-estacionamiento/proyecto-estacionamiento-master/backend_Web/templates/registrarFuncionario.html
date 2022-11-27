@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block tittlecontent %}
+Registrar Funcionario
+{% endblock %}
+<body>
+{% block bodycontent %}
+
+<form class="container-fluid" method="post" action="registrarFuncionario">
+  {{ form.csrf_token }}
+  <div class="mb-3 text-center">
+    <br>
+    <h4> Formulario Funcionario </h4>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Nombre</label>
+    <input type="text" class="form-control" name="nombres"  aria-describedby="helpId" placeholder="Ingrese su nombre">
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Patente</label>
+    <input type="text" class="form-control" name="patente" aria-describedby="helpId" placeholder="Ingrese su patente">
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Rut</label>
+    <input type="text" class="form-control" name="rut"  aria-describedby="helpId" placeholder="Ingrese su rut">
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label con">Numero de teléfono</label>
+    <input type="text" class="form-control" name="telefono" aria-describedby="helpId" placeholder="Ingrese su teléfono">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Cargos</label>
+    <select class="form-select form-select-ls" name="cargo">
+      <option selected>Select one</option>
+      <option name="Asuntos estudiantiles">Asuntos estudiantiles</option>
+      <option name="Profesor Instituo">Profesor Instituo</option>
+      <option name="Jefe de carrera">Jefe de carrera</option>
+      <option name="Practicas">Practicas</option>
+      <option name="Personal de aseo">Personal de aseo</option>
+    </select>
+  </div>
+  {% with messages = get_flashed_messages(with_categories=True) %}
+
+  {% if messages %}
+  <br/>
+  {% for category ,message in messages %}
+  <br/>
+  <div class="alert alert-{{category}}" role="alert">
+    <strong>{{message}}</strong>
+  </div>
+  {% endfor %}
+  {% endif %}
+
+  {% endwith %}
+  <p>Volver a la <a href="main">pagina principal</a></p>
+  <input class="btn btn-success" type="submit" value="Registrar">
+
+</form>
+
+</body>
+{% endblock %}
