@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block tittlecontent %}
+Registrar Alumno
+{% endblock %}
+<body>
+{% block bodycontent %}
+
+  
+
+
+<form class="container-fluid" method="post" action="registrarAlumno">
+
+  {{ form.csrf_token }}
+  
+  <div class="mb-3 text-center">
+    <br>
+    <h4> Formulario Alumno </h4>
+  </div>
+
+  <div class="mb-3">
+    <label for="" class="form-label">Nombre</label>
+    <input type="text" class="form-control" name="nombres" id="nombres"  placeholder="Ingrese su nombre">
+    
+  </div>
+
+  <div class="mb-3">
+    <label for="" class="form-label">Patente</label>
+    <input type="text" class="form-control" name="patente" id="patente"  placeholder="Ingrese su patente">
+    
+  </div>
+
+  <div class="mb-3">
+    <label for="" class="form-label">Rut</label>
+    <input type="text" class="form-control" name="rut" id="rut"  placeholder="Ingrese su rut">
+    
+  </div>
+
+  <div class="mb-3">
+    <label for="" class="form-label con">Numero de teléfono</label>
+    <input type="text" class="form-control" name="telefono" id="telefono" placeholder="Ingrese su teléfono">
+    
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Carrera</label>
+    <select class="form-select form-select-ls" name="carrera" id="Carrera">
+      <option selected>Select one</option>
+      <option name="Administracion de Empresas">Administracion de Empresas</option>
+      <option name="Comercio Exterior">Comercio Exterior</option>
+      <option name="Contabilidad General">Contabilidad General</option>
+      <option name="Ingenieria Informatica">Ingenieria Informatica</option>
+      <option name="Analista Programador">Analista Programador</option>
+    </select>
+  </div>
+  <input type="radio" class="form-check-input" id="diurno" name="horario" value="diurno" checked>
+      <label class="form-check-label" for="diurno">Diurno</label>
+      <input type="radio" class="form-check-input" id="vespertino" name="horario" value="vespertino" checked>
+      <label class="form-check-label" for="vespertino">Vespertino</label>
+      {% with messages = get_flashed_messages(with_categories=True) %}
+
+      {% if messages %}
+      <br/>
+      {% for category ,message in messages %}
+      <br/>
+      <div class="alert alert-{{category}}" role="alert">
+        <strong>{{message}}</strong>
+      </div>
+      {% endfor %}
+      {% endif %}
+
+      {% endwith %}
+    <p>Volver a la <a href="main">pagina principal</a></p>
+    <input class="btn btn-success" type="submit" value="Registrar">
+
+
+</form>
+
+</body>
+{% endblock %}
