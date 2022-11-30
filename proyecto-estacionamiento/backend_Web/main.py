@@ -24,11 +24,11 @@ def login():
         Login = db['Login']
         user = Login.find_one({'usuario' : request.form['usuario']}, {'contraseña' : request.form['contraseña']})
         usuario = request.form['usuario']
-        contraseña = request.form['contraseña']
+        contrasena = request.form['contraseña']
         if user:
-            if usuario == 'guardia' and contraseña:
+            if usuario == 'guardia' and contrasena:
                 return render_template('mainGuardia.html')
-            elif usuario == 'admin' and contraseña:
+            elif usuario == 'admin' and contrasena:
                 return render_template('mainAdmin.html')
             return render_template('index.html')
         else:

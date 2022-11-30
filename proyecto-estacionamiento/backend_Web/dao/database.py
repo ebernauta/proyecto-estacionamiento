@@ -1,4 +1,4 @@
-from pymongo import MongoClient, server_api
+from pymongo import MongoClient
 def conexion():
     try:
         client = MongoClient("mongodb+srv://adminProyect:acceso123@sistema-estacionamiento.ieortuz.mongodb.net/?retryWrites=true&w=majority")
