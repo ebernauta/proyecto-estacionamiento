@@ -136,18 +136,52 @@ def registrar_funcionario():
     else:
         return render_template("registrarFuncionario.html", form = form)
 
-@app.route('/scan', methods=["POST", "GET"])
-def scan():
+@app.route('/scanEntrada', methods=["POST", "GET"])
+def scanEntrada():
     form = MyForm()
     if request.method == "POST":
+        patente = request.form['patente']
+        colEstacionados = db['Estacionados']
         colAlumnos = db['Alumnos']
         colFuncionarios = db['Funcionarios']
-        busqueda = colAlumnos.find_one({"patente": request.form['patente']})
-        if busqueda:
+        busquedaAlumno = colAlumnos.find_one({"patente": patente})
+        busquedaFuncionario = colFuncionarios.find_one({"patente": patente})
+        if busquedaAlumno:
+            colEstacionados.insert_one(busquedaAlumno)
+            
+            return redirect(url_for('aprobado'))
+        elif busquedaFuncionario:
+            colEstacionados.insert_one(busquedaFuncionario)
+            
             return redirect(url_for('aprobado'))
         else:
             return redirect(url_for('rechazado'))
     return render_template("scaneo.html", form = form)
+
+@app.route('/scanSalida', methods=["POST", "GET"])
+def scanSalida():
+    form = MyForm()
+    if request.method == "POST":
+        patente = request.form['patente']
+        colEstacionados = db['Estacionados']
+        colAlumnos = db['Alumnos']
+        colFuncionarios = db['Funcionarios']
+        busquedaAlumno = colAlumnos.find_one({"patente": patente})
+        busquedaFuncionario = colFuncionarios.find_one({"patente": patente})
+        if busquedaAlumno:
+            colEstacionados.delete_one(busquedaAlumno)
+            
+            return redirect(url_for('aprobado'))
+        elif busquedaFuncionario:
+            colEstacionados.delete_one(busquedaFuncionario)
+            
+            return redirect(url_for('aprobado'))
+        else:
+            return redirect(url_for('rechazado'))
+    return render_template("scaneo.html", form = form)
+
+
+
 
 
 @app.route('/aprobado', methods=["POST", "GET"])
