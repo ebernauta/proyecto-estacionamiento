@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block tittlecontent %}
+TEST01
+{% endblock %}
+{% block bodycontent %}
+<main>
+    <div class="container-fluid ">
+        <h2 class="mt-4 text-center">Estudiantes Registrados</h2>                        
+        <div class="card mb-4">
+            <div class="card-body mb-4">
+                <table id="data_estudiantes">
+                    <thead>
+                        <tr>
+                            <th>Nombres</th>
+                            <th>Rut</th>
+                            <th>Telefono</th>
+                            <th>Patente</th>
+                            <th>Carrera</th>
+                            <th>Horario</th>
+                            <th>Cargo</th>
+                        </tr>
+                    </thead>
+                </table>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+                <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js"></script>
+                
+                <script type="text/javascript">
+                    $(function(){
+                        $.ajax({
+                            url : '/datosAlumnos',
+                            type : 'GET',
+                            success: function(response){
+                                console.log(response)
+                                $('#data_estudiantes').DataTable({
+                                    pageLenght: 5,
+                                    "data": response["datosAlum"],
+                                    "columns":[
+                                        {"data": "nombres"},
+                                        {"data": "rut"},
+                                        {"data": "telefono"},
+                                        {"data": "patente"},
+                                        {"data": "carrera"},
+                                        {"data": "horarioClases"},
+                                        {"data": "cargo"},
+            
+                                    ]
+                                })                
+                            }
+                        })
+                    })
+                </script>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid ">
+        <h2 class="mt-4 text-center">Funcionarios Registrados</h2>                        
+        <div class="card mb-4">
+            <div class="card-body mb-4">
+                <table id="data_funcionarios">
+                    <thead>
+                        <tr>
+                            <th>Nombres</th>
+                            <th>Rut</th>
+                            <th>Telefono</th>
+                            <th>Patente</th>
+                            <th>Carrera</th>
+                            <th>Horario</th>
+                            <th>Cargo</th>
+                        </tr>
+                    </thead>
+                </table>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+                <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js"></script>
+                
+                <script type="text/javascript">
+                    $(function(){
+                        $.ajax({
+                            url : '/datosFuncionarios',
+                            type : 'GET',
+                            success: function(response){
+                                console.log(response)
+                                $('#data_funcionarios').DataTable({
+                                    pageLenght: 5,
+                                    "data": response["datosFunc"],
+                                    "columns":[
+                                        {"data": "nombres"},
+                                        {"data": "rut"},
+                                        {"data": "telefono"},
+                                        {"data": "patente"},
+                                        {"data": "carrera"},
+                                        {"data": "horarioClases"},
+                                        {"data": "cargo"},
+            
+                                    ]
+                                })                
+                            }
+                        })
+                    })
+                </script>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+
+{% endblock %}
