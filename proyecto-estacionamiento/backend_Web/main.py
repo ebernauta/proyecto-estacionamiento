@@ -66,6 +66,43 @@ def datos():
         dic["cargo"] = i["cargo"]
         nuevaLista.append(dic)
     return jsonify({"datos": nuevaLista})
+
+@app.route("/datosAlumnos", methods=['GET'])
+def datosAlumnos():
+    form = MyForm()
+    alumnos = db['Alumnos']
+    colAlumnos = list(alumnos.find({}))
+    nuevaLista = []
+    for i in colAlumnos:
+        dic = {}
+        dic["nombres"] = i["nombres"]
+        dic["rut"] = i["rut"]
+        dic["telefono"] = i["telefono"]
+        dic["patente"] = i["patente"]
+        dic["carrera"] = i["carrera"]
+        dic["horarioClases"] = i["horarioClases"]
+        dic["cargo"] = i["cargo"]
+        nuevaLista.append(dic)
+    return jsonify({"datosAlum": nuevaLista})
+
+@app.route("/datosFuncionarios", methods=['GET'])
+def datosFuncionarios():
+    form = MyForm()
+    funcionarios = db['Funcionarios']
+    colFuncionarios = list(funcionarios.find({}))
+    nuevaLista = []
+    for i in colFuncionarios:
+        dic = {}
+        dic["nombres"] = i["nombres"]
+        dic["rut"] = i["rut"]
+        dic["telefono"] = i["telefono"]
+        dic["patente"] = i["patente"]
+        dic["carrera"] = i["carrera"]
+        dic["horarioClases"] = i["horarioClases"]
+        dic["cargo"] = i["cargo"]
+        nuevaLista.append(dic)
+    return jsonify({"datosFunc": nuevaLista})
+
     
 @app.route('/registrarAlumno', methods=['GET', 'POST'])
 def registrar_alumno():
@@ -135,6 +172,11 @@ def registrar_funcionario():
         return redirect(url_for('registrar_funcionario'))
     else:
         return render_template("registrarFuncionario.html", form = form)
+
+@app.route('/tablaDatos', methods=['GET', 'POST'])
+def tablaDatos():
+    form = MyForm()
+    return render_template("tablaDatos.html", form = form)
 
 @app.route('/scanEntrada', methods=["POST", "GET"])
 def scanEntrada():
