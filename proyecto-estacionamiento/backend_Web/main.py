@@ -145,15 +145,20 @@ def scan():
         if busqueda:
             return redirect(url_for('aprobado'))
         else:
-            return "NO APROBADO"
-    
+            return redirect(url_for('rechazado'))
     return render_template("scaneo.html", form = form)
+
 
 @app.route('/aprobado', methods=["POST", "GET"])
 def aprobado():
     form = MyForm()
     return render_template("aprobado.html", form = form)
 
+@app.route('/rechazado', methods=["POST", "GET"])
+def rechazado():
+    form = MyForm()
+    return render_template("rechazado.html", form = form)
+
 
 if __name__ == '__main__':    
-    app.run(host='0.0.0.0', port=5000)
+    app.run(debug=True)
