@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block tittlecontent %}
+TEST01
+{% endblock %}
+{% block bodycontent %}
+
+                <main>
+                    <div class="container-fluid ">
+                        <h2 class="mt-4 text-center">Vehiculos Estacionados</h2>                        
+                        <div class="card mb-4">
+                            <div class="card-body mb-4">
+                                <table id="data_table">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombres</th>
+                                            <th>Rut</th>
+                                            <th>Telefono</th>
+                                            <th>Patente</th>
+                                            <th>Carrera</th>
+                                            <th>Horario</th>
+                                            <th>Cargo</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                                <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+                                <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js"></script>
+                                
+                                <script type="text/javascript">
+                                    $(function(){
+                                        $.ajax({
+                                            url : '/datos',
+                                            type : 'GET',
+                                            success: function(response){
+                                                console.log(response)
+                                                $('#data_table').DataTable({
+                                                    pageLenght: 5,
+                                                    "data": response["datos"],
+                                                    "columns":[
+                                                        {"data": "nombres"},
+                                                        {"data": "rut"},
+                                                        {"data": "telefono"},
+                                                        {"data": "patente"},
+                                                        {"data": "carrera"},
+                                                        {"data": "horarioClases"},
+                                                        {"data": "cargo"},
+                            
+                                                    ]
+                                                })                
+                                            }
+                                        })
+                                    })
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid text-center">
+                        {% if contadorEstacionados == 0 %}
+                            <h1>No hay vehiculos estacionados</h1>
+                            <div class="progress" style="height: 40px;">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar"  style="width: 1%"></div>
+                            </div>
+                        {% elif contadorEstacionados == 1 %}
+                            <h1>Cupos Disponibles</h1>
+                            <div class="progress" style="height: 40px;">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar"  style="width: 20%"><h3>{{contadorEstacionados}}/5 Cupos</h3></div>
+                            </div>
+                        {% elif contadorEstacionados == 2 %}
+                            <h1>Cupos Disponibles</h1>
+                            <div class="progress" style="height: 40px;">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-succes" role="progressbar"  style="width: 45%"><h3>{{contadorEstacionados}}/5 Cupos</h3></div>
+                            </div>
+                        {% elif contadorEstacionados == 3 %}
+                            <h1>Cupos Disponibles</h1>
+                            <div class="progress" style="height: 40px;">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar"  style="width: 65%"><h3>{{contadorEstacionados}}/5 Cupos</h3></div>
+                            </div>
+                        {% elif contadorEstacionados == 4 %}
+                            <h1>Cupos Disponibles</h1>
+                            <div class="progress" style="height: 40px;">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar"  style="width: 80%"><h3>{{contadorEstacionados}}/5 Cupos</h3></div>
+                            </div>
+                        {% else %}
+                            <h1>No hay Cupos disponibles</h1><br>
+                            <div class="progress" style="height: 40px;">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar"  style="width: 100%"><h3>{{contadorEstacionados}}/5 Cupos</h3></div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </main>
+{% endblock %}
