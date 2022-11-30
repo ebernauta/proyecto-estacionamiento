@@ -139,11 +139,21 @@ def registrar_funcionario():
 def scan():
     form = MyForm()
     if request.method == "POST":
-        dato = request.form['dato']
-        return f"El dato es: {dato}"
+        colAlumnos = db['Alumnos']
+        colFuncionarios = db['Funcionarios']
+        busqueda = colAlumnos.find_one({"patente": request.form['patente']})
+        if busqueda:
+            return redirect(url_for('aprobado'))
+        else:
+            return "NO APROBADO"
     
     return render_template("scaneo.html", form = form)
-    
+
+@app.route('/aprobado', methods=["POST", "GET"])
+def aprobado():
+    form = MyForm()
+    return render_template("aprobado.html", form = form)
+
 
 if __name__ == '__main__':    
     app.run(host='0.0.0.0', port=5000)
