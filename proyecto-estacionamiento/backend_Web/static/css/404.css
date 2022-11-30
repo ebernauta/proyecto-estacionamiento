@@ -14,13 +14,13 @@ body{
     align-items: center;
 }
 
-.container{
+.container-404{
     width: 100%;
     max-width: 1200px;
     text-align: center;
     background: #fff;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 5px;
     box-shadow: 0px 1px 10px rgba(0,0,0,0.5);
     line-height: 1.7;
 }
