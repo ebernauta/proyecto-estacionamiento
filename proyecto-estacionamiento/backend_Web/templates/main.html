@@ -56,7 +56,12 @@ TEST01
                         </div>
                     </div>
                     <div class="container-fluid text-center">
-                        {% if contadorEstacionados == 1 %}
+                        {% if contadorEstacionados == 0 %}
+                            <h1>Cupos Disponibles</h1>
+                            <div class="progress" style="height: 40px;">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar"  style="width: 1%"></div>
+                            </div>
+                        {% elif contadorEstacionados == 1 %}
                             <h1>Cupos Disponibles</h1>
                             <div class="progress" style="height: 40px;">
                                 <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar"  style="width: 20%"><h3>{{contadorEstacionados}}/5 Cupos</h3></div>

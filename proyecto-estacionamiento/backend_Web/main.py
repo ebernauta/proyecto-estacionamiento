@@ -171,18 +171,21 @@ def scanSalida():
         if busquedaAlumno:
             colEstacionados.delete_one(busquedaAlumno)
             
-            return redirect(url_for('aprobado'))
+            return redirect(url_for('salida'))
         elif busquedaFuncionario:
             colEstacionados.delete_one(busquedaFuncionario)
             
-            return redirect(url_for('aprobado'))
+            return redirect(url_for('salida'))
         else:
             return redirect(url_for('rechazado'))
     return render_template("scaneo.html", form = form)
 
 
-
-
+# salida estacionamiento 
+@app.route('/salida', methods=['GET', 'POST'])
+def salida():
+    form = MyForm()
+    return render_template("salida.html", form = form)
 
 @app.route('/aprobado', methods=["POST", "GET"])
 def aprobado():
