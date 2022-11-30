@@ -97,7 +97,8 @@ def registrar_alumno():
             flash("Ingrese su Carrera", "danger")
             return redirect(url_for('registrar_alumno'))
         alumnos = classForm.FormularioAlumnos(nombres, rut, telefono, patente, carrera, horario)
-        colAlumnos.insert_one(alumnos.agregarAlumnos())    
+        colAlumnos.insert_one(alumnos.agregarAlumnos())
+            # qr
         flash("Alumno registrado con exito", "success")
         return redirect(url_for('registrar_alumno'))
     else:        
