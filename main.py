@@ -5,6 +5,7 @@ from wtforms.validators import DataRequired
 import modelo.classForm as classForm
 import dao.database as database
 from pymongo import MongoClient
+import qrcode
 
 db = database.conexion()
 
@@ -138,7 +139,15 @@ def registrar_alumno():
             return redirect(url_for('registrar_alumno'))
         alumnos = classForm.FormularioAlumnos(nombres, rut, telefono, patente, carrera, horario)
         colAlumnos.insert_one(alumnos.agregarAlumnos())
-            # qr
+        input = patente
+        qr = qrcode.QRCode(version=1, box_size=10, border=5)
+        qr.add_data(input)
+        qr.make(fit=True)
+        
+        img = qr.make_image(fill="black", back_color="white")
+        filename = 'QrsAlumnos/' + rut + '.png'
+        img.save(filename)
+        
         flash("Alumno registrado con exito", "success")
         return redirect(url_for('registrar_alumno'))
     else:        
@@ -171,6 +180,14 @@ def registrar_funcionario():
             return redirect(url_for('registrar_funcionario'))
         funcionarios = classForm.FormularioFuncionarios(nombre, rut, numeroTelefonico, patente, cargo)
         colFuncionarios.insert_one(funcionarios.agregarFuncionarios())
+        input = patente
+        qr = qrcode.QRCode(version=1, box_size=10, border=5)
+        qr.add_data(input)
+        qr.make(fit=True)
+        
+        img = qr.make_image(fill="black", back_color="white")
+        filename = 'QrsFuncionarios/' + rut + '.png'
+        img.save(filename)
         flash("Registro exitoso", "success")
         return redirect(url_for('registrar_funcionario'))
     else:
